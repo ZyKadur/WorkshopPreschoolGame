@@ -2,30 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Numerics;
+using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Crop : MonoBehaviour
 {
-    private void Start()
-    {
-        state = CropState.EMPTY;
-        plant = null;
-    }
-
     public enum CropState
     {
         EMPTY,
         HOLE,
         SEED,
         GROWING,
-        HARVASTABLE 
+        HARVASTABLE
     }
 
     public CropState state = CropState.EMPTY;
     public Plant plant;
 
     [SerializeField] private SpriteRenderer plantSprite;
+
+    private float growTimer = 0;
+    [SerializeField] private float timeToGrow = 2;
+
+    private void Start()
+    {
+        state = CropState.EMPTY;
+        plant = null;
+    }
+
+    private void Update()
+    {
+        if (state == CropState.GROWING)
+        {
+            growTimer += Time.deltaTime;
+
+            if (growTimer >= timeToGrow) 
+                Grow();
+        }
+    }
 
     public void Dig()
     {
@@ -60,6 +75,7 @@ public class Crop : MonoBehaviour
         if (state != CropState.GROWING)
             return;
 
+        growTimer = 0;
         state = CropState.HARVASTABLE;
         plantSprite.sprite = plant.harvastableSprite;
     }
