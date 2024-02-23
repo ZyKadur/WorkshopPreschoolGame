@@ -49,7 +49,7 @@ public class Crop : MonoBehaviour
         if (state != CropState.EMPTY)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.HOLE;
         plantSprite.sprite = null;
     }
@@ -59,7 +59,7 @@ public class Crop : MonoBehaviour
         if (state != CropState.HOLE)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.SEED;
         plant = _plant;
         plantSprite.sprite = plant.seedSprite;
@@ -70,7 +70,7 @@ public class Crop : MonoBehaviour
         if (state != CropState.SEED)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.GROWING;
         plantSprite.sprite = plant.growingSprite;
     }
@@ -80,7 +80,7 @@ public class Crop : MonoBehaviour
         if (state != CropState.GROWING)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         growTimer = 0;
         state = CropState.HARVASTABLE;
         plantSprite.sprite = plant.harvastableSprite;
@@ -93,7 +93,7 @@ public class Crop : MonoBehaviour
 
         Season.Instance?.Harvest(plant);
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.EMPTY;
         plant = null;
         plantSprite.sprite = null;
