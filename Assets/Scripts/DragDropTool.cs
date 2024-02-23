@@ -18,7 +18,7 @@ public class DragDropTool : MonoBehaviour
     [SerializeField]
     private ToolType toolType;
     [SerializeField]
-    private string cropTag;
+    private Plant seedType;
     
     void Start ()
     {
@@ -50,8 +50,8 @@ public class DragDropTool : MonoBehaviour
         RaycastHit2D hitInfos;
 
         if (hitInfos = Physics2D.Raycast(rayOrigin, rayDirection))
-            if (hitInfos.collider.CompareTag(cropTag))
-                FindObjectOfType<DropInteractionManager>().DoInteraction(toolType, hitInfos.collider.GetComponent<Crop>());
+            if (hitInfos.collider.gameObject.GetComponent<Crop>() != null)
+                FindObjectOfType<DropInteractionManager>().DoInteraction(toolType, hitInfos.collider.gameObject.GetComponent<Crop>(), seedType);
 
         collider2D.enabled=true;
     }

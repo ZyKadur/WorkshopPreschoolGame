@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DropInteractionManager : MonoBehaviour
 {
-    public void DoInteraction(DragDropTool.ToolType toolType, Crop targetCrop)
+    public void DoInteraction(DragDropTool.ToolType toolType, Crop targetCrop, Plant plant = null)
     {
         switch (toolType)
         {
@@ -12,7 +12,7 @@ public class DropInteractionManager : MonoBehaviour
                 targetCrop.Water();
                 break;
             case DragDropTool.ToolType.Seed:
-                targetCrop.Plant();
+                targetCrop.Plant(plant);
                 break;
             case DragDropTool.ToolType.Shovel:
                 targetCrop.Dig();
