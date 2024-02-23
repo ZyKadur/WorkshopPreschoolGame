@@ -23,6 +23,7 @@ public class Crop : MonoBehaviour
 
     [SerializeField] private SpriteRenderer plantSprite;
     [SerializeField] private ParticleSystem transitionParticle;
+    [SerializeField] private Plant debugPlant;
 
     private float growTimer = 0;
     [SerializeField] private float timeToGrow = 2;
@@ -44,6 +45,7 @@ public class Crop : MonoBehaviour
         }
     }
 
+    [ContextMenu("Dig")]
     public void Dig()
     {
         if (state != CropState.EMPTY)
@@ -54,6 +56,12 @@ public class Crop : MonoBehaviour
         plantSprite.sprite = null;
     }
 
+    [ContextMenu("PlantDebug")]
+    public void PlantDebug()
+    {
+        Plant(debugPlant);
+    }
+
     public void Plant(Plant _plant)
     {
         if (state != CropState.HOLE)
@@ -62,9 +70,10 @@ public class Crop : MonoBehaviour
         transitionParticle?.Play();
         state = CropState.SEED;
         plant = _plant;
-        plantSprite.sprite = plant.seedSprite;
+        plantSprite.sprite = plant?.seedSprite;
     }
 
+    [ContextMenu("Water")]
     public void Water()
     {
         if (state != CropState.SEED)
@@ -72,9 +81,10 @@ public class Crop : MonoBehaviour
 
         transitionParticle?.Play();
         state = CropState.GROWING;
-        plantSprite.sprite = plant.growingSprite;
+        plantSprite.sprite = plant?.growingSprite;
     }
 
+    [ContextMenu("Grow")]
     public void Grow()
     {
         if (state != CropState.GROWING)
@@ -83,9 +93,10 @@ public class Crop : MonoBehaviour
         transitionParticle?.Play();
         growTimer = 0;
         state = CropState.HARVASTABLE;
-        plantSprite.sprite = plant.harvastableSprite;
+        plantSprite.sprite = plant?.harvastableSprite;
     }
 
+    [ContextMenu("Harvest")]
     public void Harvest()
     {
         if (state != CropState.HARVASTABLE)
