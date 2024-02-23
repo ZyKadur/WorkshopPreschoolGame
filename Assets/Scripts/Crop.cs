@@ -18,8 +18,8 @@ public class Crop : MonoBehaviour
     }
 
 
-    public CropState state = CropState.EMPTY;
-    public Plant plant;
+    [HideInInspector] public CropState state = CropState.EMPTY;
+    [HideInInspector] public Plant plant;
 
     [SerializeField] private SpriteRenderer plantSprite;
     [SerializeField] private ParticleSystem transitionParticle;
