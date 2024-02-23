@@ -51,6 +51,11 @@ public class Crop : MonoBehaviour
         }
     }
 
+    private void OnMouseDown()
+    {
+        Harvest();
+    }
+
     [ContextMenu("Dig")]
     public void Dig()
     {

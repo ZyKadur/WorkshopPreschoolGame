@@ -48,16 +48,16 @@ public class Season : MonoBehaviour
         switch (season)
         {
             case SeasonEnum.SUMMER:
-                currentGoal = summerGoal;
+                SetCurrentGoal(summerGoal);
                 break;
             case SeasonEnum.SPRING:
-                currentGoal = springGoal;
+                SetCurrentGoal(springGoal);
                 break;
             case SeasonEnum.AUTOMN:
-                currentGoal = automnGoal;
+                SetCurrentGoal(automnGoal);
                 break;
-            case SeasonEnum.WINTER: 
-                currentGoal = winterGoal;
+            case SeasonEnum.WINTER:
+                SetCurrentGoal(winterGoal);
                 break;
             default:
                 break;
