@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Season : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class Season : MonoBehaviour
     [SerializeField] private List<Plant> automnGoal;
     [SerializeField] private List<Plant> summerGoal;
     [SerializeField] private List<Plant> winterGoal;
+
+    [Header("Goal UI")]
+    [SerializeField] private Image goalA;
+    [SerializeField] private Image goalB;
+    [SerializeField] private Image goalC;
 
     static public Season Instance { get; private set; }
 
@@ -58,10 +64,36 @@ public class Season : MonoBehaviour
         }
     }
 
+    private void SetCurrentGoal(List<Plant> goal)
+    {
+        currentGoal = goal;
+        goalA.sprite = goal[0].productSprite;
+        goalB.sprite = goal[1].productSprite;
+        goalC.sprite = goal[2].productSprite;
+        goalA.color = Color.white;
+        goalB.color = Color.white;
+        goalC.color = Color.white;
+    }
+
     public void Harvest(Plant plant)
     {
         if (currentGoal.Contains(plant))
         {
+            switch (currentGoal.IndexOf(plant))
+            {
+                case 0:
+                    goalA.color = Color.gray;
+                    break;
+                case 1:
+                    goalB.color = Color.gray;
+                    break;
+                case 2:
+                    goalC.color = Color.gray;
+                    break;
+                default : 
+                    break;
+            }
+
             currentGoal.Remove(plant);
             if (currentGoal.Count == 0) 
             {
