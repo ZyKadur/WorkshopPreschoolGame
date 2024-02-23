@@ -4932,6 +4932,7 @@ MonoBehaviour:
   plant: {fileID: 0}
   plantSprite: {fileID: 4120923265418790145}
   transitionParticle: {fileID: 7666536137007465106}
+  holeSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   debugPlant: {fileID: 0}
   timeToGrow: 2
 --- !u!61 &3056435039588156171

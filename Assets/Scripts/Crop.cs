@@ -21,8 +21,14 @@ public class Crop : MonoBehaviour
     [HideInInspector] public CropState state = CropState.EMPTY;
     [HideInInspector] public Plant plant;
 
+    [Header("Object in Prefab")]
     [SerializeField] private SpriteRenderer plantSprite;
     [SerializeField] private ParticleSystem transitionParticle;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite holeSprite;
+
+    [Header("Debug")]
     [SerializeField] private Plant debugPlant;
 
     private float growTimer = 0;
@@ -53,7 +59,7 @@ public class Crop : MonoBehaviour
 
         transitionParticle?.Play();
         state = CropState.HOLE;
-        plantSprite.sprite = null;
+        plantSprite.sprite = holeSprite;
     }
 
     [ContextMenu("PlantDebug")]
