@@ -6,6 +6,8 @@ public class DropInteractionManager : MonoBehaviour
 {
     public void DoInteraction(DragDropTool.ToolType toolType, Crop targetCrop, Plant plant = null)
     {
+        Debug.Log(toolType);
+
         switch (toolType)
         {
             case DragDropTool.ToolType.Arrosoir:

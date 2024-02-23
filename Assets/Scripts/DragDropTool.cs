@@ -19,10 +19,13 @@ public class DragDropTool : MonoBehaviour
     private ToolType toolType;
     [SerializeField]
     private Plant seedType;
+
+    private Vector3 startPosition;
     
     void Start ()
     {
         collider2D = GetComponent<Collider2D>();
+        startPosition = transform.position;
     }
 
     Vector3 MouseWorldPosition ()
@@ -52,7 +55,10 @@ public class DragDropTool : MonoBehaviour
         if (hitInfos = Physics2D.Raycast(rayOrigin, rayDirection))
             if (hitInfos.collider.gameObject.GetComponent<Crop>() != null)
                 FindObjectOfType<DropInteractionManager>().DoInteraction(toolType, hitInfos.collider.gameObject.GetComponent<Crop>(), seedType);
+            
 
         collider2D.enabled=true;
+
+        transform.position = startPosition;
     }
 }

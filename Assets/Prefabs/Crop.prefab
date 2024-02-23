@@ -4839,6 +4839,7 @@ GameObject:
   - component: {fileID: 16035156787148031}
   - component: {fileID: 6160768591344626981}
   - component: {fileID: 5141325073375923545}
+  - component: {fileID: 3056435039588156171}
   m_Layer: 0
   m_Name: Crop
   m_TagString: Untagged
@@ -4931,7 +4932,53 @@ MonoBehaviour:
   plant: {fileID: 0}
   plantSprite: {fileID: 4120923265418790145}
   transitionParticle: {fileID: 7666536137007465106}
+  debugPlant: {fileID: 0}
   timeToGrow: 2
+--- !u!61 &3056435039588156171
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5898448178356264055}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4}
+  m_EdgeRadius: 0
 --- !u!1 &7955734664721754435
 GameObject:
   m_ObjectHideFlags: 0
