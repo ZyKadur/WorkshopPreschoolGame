@@ -13,6 +13,8 @@ public class Season : MonoBehaviour
         AUTOMN
     }
 
+    [SerializeField] SeasonEnum startSeason = SeasonEnum.SPRING;
+
     [Header("Season Renderer")]
     [SerializeField] private SpriteRenderer seasonRenderer;
     [SerializeField] private Sprite springSprite;
@@ -39,6 +41,11 @@ public class Season : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        SetSeason(startSeason);
     }
 
     private void SetSeason(SeasonEnum season)
