@@ -56,15 +56,19 @@ public class Season : MonoBehaviour
         {
             case SeasonEnum.SUMMER:
                 SetCurrentGoal(summerGoal);
+                seasonRenderer.sprite = summerSprite;
                 break;
             case SeasonEnum.SPRING:
                 SetCurrentGoal(springGoal);
+                seasonRenderer.sprite = springSprite;
                 break;
             case SeasonEnum.AUTOMN:
                 SetCurrentGoal(automnGoal);
+                seasonRenderer.sprite = automnSprite;
                 break;
             case SeasonEnum.WINTER:
                 SetCurrentGoal(winterGoal);
+                seasonRenderer.sprite = winterSprite;
                 break;
             default:
                 break;
