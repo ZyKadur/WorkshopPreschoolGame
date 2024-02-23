@@ -7,6 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Crop : MonoBehaviour
 {
+    private void Start()
+    {
+        state = CropState.EMPTY;
+        plant = null;
+    }
+
     public enum CropState
     {
         EMPTY,
@@ -17,8 +23,9 @@ public class Crop : MonoBehaviour
     }
 
     public CropState state = CropState.EMPTY;
-
     public Plant plant;
+
+    [SerializeField] private SpriteRenderer plantSprite;
 
     public void Dig()
     {
@@ -26,6 +33,7 @@ public class Crop : MonoBehaviour
             return;
 
         state = CropState.HOLE;
+        plantSprite.sprite = null;
     }
 
     public void Plant(Plant _plant)
@@ -35,6 +43,7 @@ public class Crop : MonoBehaviour
 
         state = CropState.SEED;
         plant = _plant;
+        plantSprite.sprite = plant.seedSprite;
     }
 
     public void Water()
@@ -43,6 +52,7 @@ public class Crop : MonoBehaviour
             return;
 
         state = CropState.GROWING;
+        plantSprite.sprite = plant.growingSprite;
     }
 
     public void Grow()
@@ -51,6 +61,7 @@ public class Crop : MonoBehaviour
             return;
 
         state = CropState.HARVASTABLE;
+        plantSprite.sprite = plant.harvastableSprite;
     }
 
     public void Harvest()
@@ -60,5 +71,6 @@ public class Crop : MonoBehaviour
 
         state = CropState.EMPTY;
         plant = null;
+        plantSprite.sprite = null;
     }
 }
