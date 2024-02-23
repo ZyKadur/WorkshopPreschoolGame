@@ -1,0 +1,58 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+
+public class DragDropTool : MonoBehaviour
+{
+    public enum ToolType
+    {
+        Arrosoir,
+        Seed,
+        Shovel
+    }
+
+    Collider2D collider2D;
+    Vector3 offset;
+
+    [SerializeField]
+    private ToolType toolType;
+    [SerializeField]
+    private string cropTag;
+    
+    void Start ()
+    {
+        collider2D = GetComponent<Collider2D>();
+    }
+
+    Vector3 MouseWorldPosition ()
+    {
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+        return Camera.main.ScreenToWorldPoint(mouseScreenPos);
+    }
+
+    void OnMouseDown()
+    {
+        offset = transform.position - MouseWorldPosition();
+    }
+
+    public void OnMouseDrag()
+    {
+        transform.position = MouseWorldPosition() + offset;
+    }
+
+    public void OnMouseUp()
+    {
+        collider2D.enabled = false;
+        Vector3 rayOrigin = Camera.main.transform.position;
+        Vector3 rayDirection = MouseWorldPosition() - Camera.main.transform.position;
+        RaycastHit2D hitInfos;
+
+        if (hitInfos = Physics2D.Raycast(rayOrigin, rayDirection))
+            if (hitInfos.collider.CompareTag(cropTag))
+                FindObjectOfType<DropInteractionManager>().DoInteraction(toolType, hitInfos.collider.GetComponent<Crop>());
+
+        collider2D.enabled=true;
+    }
+}
