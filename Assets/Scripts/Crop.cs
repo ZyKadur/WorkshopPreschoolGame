@@ -85,6 +85,8 @@ public class Crop : MonoBehaviour
         if (state != CropState.HARVASTABLE)
             return;
 
+        Season.Instance?.Harvest(plant);
+
         state = CropState.EMPTY;
         plant = null;
         plantSprite.sprite = null;
