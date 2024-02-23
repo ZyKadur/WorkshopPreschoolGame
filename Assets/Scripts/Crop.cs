@@ -18,11 +18,12 @@ public class Crop : MonoBehaviour
     }
 
 
-    public CropState state = CropState.EMPTY;
-    public Plant plant;
+    [HideInInspector] public CropState state = CropState.EMPTY;
+    [HideInInspector] public Plant plant;
 
     [SerializeField] private SpriteRenderer plantSprite;
     [SerializeField] private ParticleSystem transitionParticle;
+    [SerializeField] private Plant debugPlant;
 
     private float growTimer = 0;
     [SerializeField] private float timeToGrow = 2;
@@ -44,14 +45,21 @@ public class Crop : MonoBehaviour
         }
     }
 
+    [ContextMenu("Dig")]
     public void Dig()
     {
         if (state != CropState.EMPTY)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.HOLE;
         plantSprite.sprite = null;
+    }
+
+    [ContextMenu("PlantDebug")]
+    public void PlantDebug()
+    {
+        Plant(debugPlant);
     }
 
     public void Plant(Plant _plant)
@@ -59,33 +67,36 @@ public class Crop : MonoBehaviour
         if (state != CropState.HOLE)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.SEED;
         plant = _plant;
-        plantSprite.sprite = plant.seedSprite;
+        plantSprite.sprite = plant?.seedSprite;
     }
 
+    [ContextMenu("Water")]
     public void Water()
     {
         if (state != CropState.SEED)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.GROWING;
-        plantSprite.sprite = plant.growingSprite;
+        plantSprite.sprite = plant?.growingSprite;
     }
 
+    [ContextMenu("Grow")]
     public void Grow()
     {
         if (state != CropState.GROWING)
             return;
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         growTimer = 0;
         state = CropState.HARVASTABLE;
-        plantSprite.sprite = plant.harvastableSprite;
+        plantSprite.sprite = plant?.harvastableSprite;
     }
 
+    [ContextMenu("Harvest")]
     public void Harvest()
     {
         if (state != CropState.HARVASTABLE)
@@ -93,7 +104,7 @@ public class Crop : MonoBehaviour
 
         Season.Instance?.Harvest(plant);
 
-        transitionParticle.Play();
+        transitionParticle?.Play();
         state = CropState.EMPTY;
         plant = null;
         plantSprite.sprite = null;
