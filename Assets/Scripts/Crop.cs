@@ -5,7 +5,6 @@ using System.Numerics;
 using System.Threading;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class Crop : MonoBehaviour
 {
     public enum CropState
