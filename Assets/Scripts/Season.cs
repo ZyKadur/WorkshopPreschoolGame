@@ -90,15 +90,15 @@ public class Season : MonoBehaviour
     {
         if (currentGoal.Contains(plant))
         {
-            switch (currentGoal.IndexOf(plant))
+            switch (currentGoal.Count)
             {
-                case 0:
+                case 3:
                     goalA.color = Color.gray;
                     break;
-                case 1:
+                case 2:
                     goalB.color = Color.gray;
                     break;
-                case 2:
+                case 1:
                     goalC.color = Color.gray;
                     break;
                 default : 
